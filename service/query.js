@@ -1,7 +1,7 @@
 
 const query = (db) => {
   //get all expenses category
-  const allExpenses = async () => {
+  const getCategory = async () => {
     return await db.manyOrNone("SELECT category_type FROM category");
   };
 
@@ -49,6 +49,11 @@ const query = (db) => {
   };
 //
 
+const deleteTables = async () => {
+  await db.none('DELETE FROM expense');
+  await db.none('DELETE FROM category');
+};
+
 //join both tables and selct the total amount and category
 //added description for display in description route
   const categoryTotals = async () => {
@@ -56,11 +61,12 @@ const query = (db) => {
   };
   
   return {
-    allExpenses,
+    getCategory,
     addExpenses,
     expensesForCategory,
     deleteCategory,
     categoryTotals,
+deleteTables
   };
 };
 

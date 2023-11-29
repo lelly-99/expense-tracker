@@ -9,7 +9,6 @@ import pgPromise from "pg-promise";
 import query from "./service/query.js";
 import home from "./routes/home.js";
 import all from "./routes/expenses.js";
-import factory_function_expenses from "./factory-function/expense.js";
 
 //pg promise
 const pgp = pgPromise();
@@ -30,12 +29,9 @@ const database = pgp(connectionString);
 //database instamce
 const database_instance = query(database);
 
-//factory function instance
-const factory_function_instance = factory_function_expenses()
-
 //route instances
-const home_route = home(database_instance, factory_function_instance);
-const expense_route = all(database_instance, factory_function_instance);
+const home_route = home(database_instance);
+const expense_route = all(database_instance);
 
 const app = express();
 

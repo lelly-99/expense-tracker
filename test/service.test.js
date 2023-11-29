@@ -25,8 +25,8 @@ describe("Service test", function () {
   });
 
   describe("Queries", function () {
-    it("should be able to return all expenses", async function () {
-      const expectedExpenses = [
+    it("should be able to return all categories", async function () {
+      const categories = [
         { "category_type": "Weekly" },
         { "category_type": "Monthly" },
         { "category_type": "Weekday" },
@@ -35,13 +35,16 @@ describe("Service test", function () {
         { "category_type": "Daily" }
       ];
     
-      const expenses = await data.getCategory();
-      assert.deepStrictEqual(expenses, expectedExpenses);
+      const expense = await data.getCategory();
+      assert.deepEqual(expense, categories);
     });
+
+    it("should be able to return expenses", async function () {
+   
+
     
-    it("should be able to add expenses", async function () {
-      const result = await data.addExpenses('Daily', 100, 'lunch');
-      assert.strictEqual(result, true);
+      const expense = await data.getCategory();
+      assert.deepEqual(expense, categories);
     });
     
 

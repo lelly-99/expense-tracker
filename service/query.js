@@ -15,19 +15,19 @@ const query = (db) => {
       let total_amount = amount;
   
       if (category_type === 'Weekly') {
-        //7 days
-        total_amount *= 7;
+        
+        total_amount *= 4;
       } else if (category_type === 'Monthly') {
-        //30 days
-        total_amount *= 30;
+       
+        total_amount *= 1;
       } else if (category_type === 'Weekday') {
         total_amount *= 5;
       } else if (category_type === 'Weekend') {
         total_amount *= 2;
       } else if (category_type === 'Once-off') {
-        total_amount *= 30;
-      } else if (category_type === 'Daily') {
         total_amount *= 1;
+      } else if (category_type === 'Daily') {
+        total_amount *= 30;
       }
   //add the description, amount, category, along with total amount ito the database
       try {

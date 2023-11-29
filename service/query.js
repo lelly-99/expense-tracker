@@ -15,10 +15,8 @@ const query = (db) => {
       let total_amount = amount;
   
       if (category_type === 'Weekly') {
-        
         total_amount *= 4;
       } else if (category_type === 'Monthly') {
-       
         total_amount *= 1;
       } else if (category_type === 'Weekday') {
         total_amount *= 5;
@@ -51,7 +49,6 @@ const query = (db) => {
 
 const deleteTables = async () => {
   await db.none('DELETE FROM expense');
-  await db.none('DELETE FROM category');
 };
 
 //join both tables and selct the total amount and category
@@ -59,6 +56,8 @@ const deleteTables = async () => {
   const categoryTotals = async () => {
     return await db.manyOrNone('SELECT category.category_type, expense.total_amount, expense.description FROM category INNER JOIN expense ON category.id = expense.category_id;');
   };
+
+  //create a function to return total for the newly added expense
   
   return {
     getCategory,
@@ -66,7 +65,7 @@ const deleteTables = async () => {
     expensesForCategory,
     deleteCategory,
     categoryTotals,
-deleteTables
+    deleteTables
   };
 };
 

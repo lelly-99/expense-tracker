@@ -1,4 +1,4 @@
-export default function home(database_instance, factory_function_instance) {
+export default function home(database_instance) {
   //get route to display app informartion
   async function add_expenses(req, res) {
     try {
@@ -7,7 +7,7 @@ export default function home(database_instance, factory_function_instance) {
       console.log(display_categories)
       //render categories
       const cat_total = await database_instance.categoryTotals()
-      res.render("index", {display_categories, cat_total});
+      res.render("index", { display_categories: display_categories, cat_total: cat_total });
     } catch (err) {
       console.error("Error", err);
     }

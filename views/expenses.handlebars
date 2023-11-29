@@ -1,1 +1,32 @@
+<div class="container">
+  <h5 style="text-align: center;">All Expenses</h5>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Total</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each cat_total}}
+        <tr>
+          <td>{{this.description}}</td>
+          <td>{{this.category_type}}</td>
+          <td>R{{this.total_amount}}</td>
+          {{!-- form to remove expenses based on category id --}}
+          <td>
+            <form action="/expenses" method="POST">
+              <input type="hidden" name="expense_id" value="{{this.id}}">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <!-- Link to home/add expenses -->
+  <a href="/">Add Expenses</a>
+</div>
 

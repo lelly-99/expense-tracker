@@ -1,4 +1,5 @@
 //import modules
+import 'dotenv/config';
 import express from "express";
 import { engine } from "express-handlebars";
 import bodyParser from "body-parser";
@@ -13,6 +14,7 @@ import factory_function_expenses from "./factory-function/expense.js";
 //pg promise
 const pgp = pgPromise();
 
+
 //SSL connection
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -21,7 +23,7 @@ if (process.env.DATABASE_URL && !local) {
 }
 
 // Database connection
-const connectionString = process.env.DATABASE_URL || "postgres://otzyymfe:0lGTbqnyGfXApYOVD2IceTfouyXP0oxi@silly.db.elephantsql.com/otzyymfe?ssl=true";
+const connectionString = process.env.DATABASE_URL;
 const database = pgp(connectionString);
 
 
@@ -67,7 +69,9 @@ app.use(function (req, res, next) {
 
 //routes
 app.get('/', home_route.add_expenses);
+app.post('/', home_route.post_add_expenses);
 app.get('/expenses', expense_route.show_all);
+app.post('/expenses', expense_route.remove_expense);
 
   
 // Start the server
